@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Home</title>
+<script language="javascript" type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+</head>
+<body>
+	<div style = "height:100px;background-color:black;">
+		<div style="color:white;">
+			<b style = "color:white;font-size:30px;margin-left:40px">拉加代尔数据系统后台</b>
+			<div style="margin-left:90%">小史你好，欢迎使用</br></br><a href="" style="color:red;">退出<a></div>
+		</div>
+	</div>
+	<form action="uploadData" method="post" enctype="multipart/form-data">
+		<div align="center" style="margin-top:200px;">
+			选择日期：<input id="d1212" class="Wdate" type="text" style="width:200px;" onfocus="WdatePicker({dateFmt:'yyyy年MM月',readOnly:true})"/><br><br>
+			选择文件：<input type="file" name="file"/><br><br>
+			<button style = "width:200px;height:30px" onclick = "login()">上传</button></br>
+		</div>
+	</form>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Home</title>
+<script>
+	function login(){
+		var userName = document.getElementById("userName").value;
+		var password = document.getElementById("password").value;
+		if(userName == "100" && password =="100"){
+			location.href='www.baidu.com';
+			return;
+		}
+		alert("用户名或密码错误！！！");
+	}
+</script>
+</head>
+<body background="bg.png" ;width="100%"; height="100%"; style = "background-size:cover">
+	<form action="login" method="post" id="loginForm">
+		<div align="center" style = "margin-top: 250px;">
+			<b style = "color:white;font-size:50px;">拉加代尔数据系统后台</b>
+			<div>
+				</br></br>
+				<input id = "username" name="username" type="text" style = "width:300px;height:30px"/></br></br>
+				<input id = "password" name="password" type="password" style = "width:300px;height:30px"/></br></br>
+				<input type="submit" style = "width:300px;height:30px" value=" 登 录 "></br>
+			</div>
+			<h3 style = "color:white;margin-top: 100px;">拉加尔代旅行零售(上海)有限公司</h3>
+		</div>
+	</form>
+</body>
+</html>
