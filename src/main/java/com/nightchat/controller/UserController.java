@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,25 +25,29 @@ public class UserController {
 	@Value("${password}")
 	private String password;
 
+	@RequestMapping(value = "index")
+	public String index() {
+		return "index";
+	}
+
 	@RequestMapping(value = "login")
-	public String login(Model model, String username, String password) {
+	public String login(Model model, String username, String password, HttpServletResponse response) {
 		if ("100".equals(username) && this.password.equals(password)) {
 			return "upload";
 		}
-		return "upload";
-		//		model.addAttribute("error", true);
-		//		return "redirect:index.html";
+		model.addAttribute("error", true);
+		return "index";
 	}
 
 	@RequestMapping(value = "uploadData", method = RequestMethod.POST)
 	@ResponseBody
-	public String uploadData(MultipartFile file) {
+	public String uploadData(MultipartFile file, String datetime) {
 		if (!file.isEmpty()) {
 			try {
 				// 这里只是简单例子，文件直接输出到项目路径下。
 				// 实际项目中，文件需要输出到指定位置，需要在增加代码处理。
 				// 还有关于文件格式限制、文件大小限制，详见：中配置。
-				BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(new File(file.getOriginalFilename())));
+				BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(new File(datetime + ".xlsx")));
 				out.write(file.getBytes());
 				out.flush();
 				out.close();
