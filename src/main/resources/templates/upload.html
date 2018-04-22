@@ -7,23 +7,33 @@
 	src="My97DatePicker/WdatePicker.js"></script>
 </head>
 <body>
-	<div style="height: 100px; background-color: black;">
+	<div style="height: 100px; background-color: #001529;">
+		<div style="height: 100px; background-color: #001529;">
 		<div style="color: white;">
-			<b style="color: white; font-size: 30px; margin-left: 40px">拉加代尔数据系统后台</b>
-			<div style="margin-left: 90%">
-				小史你好，欢迎使用</br>
-				<a href="index" style="color: red;">退出<a>
-			</div>
+			<b
+				style="position: absolute; color: white; font-size: 30px; left: 57px; top: 40px;">拉加代尔数据系统后台</b>
+			<b style="position: absolute; right: 40px; top: 40px;"> 你好，欢迎使用<br><a href="index" style="color: red;margin-left: 85px;">退出<a></b>
 		</div>
+	</div>
 	</div>
 	<form action="uploadData" method="post" enctype="multipart/form-data">
 		<div align="center" style="margin-top: 200px;">
-			选择日期：<input id="d1212" name="datetime" class="Wdate" type="text"
-				style="width: 200px;"
-				onfocus="WdatePicker({dateFmt:'yyyy年MM月',readOnly:true})" /><br>
-			<br> 选择文件：<input type="file" name="file" /><br>
-			<br> <input type="submit" style="width: 200px; height: 30px"
-				value="上传"></br>
+			<table cellspacing="20">
+				<tr>
+					<td>选择日期：<input id="d1212" name="datetime" class="Wdate"
+						type="text" style="width: 200px;"
+						onfocus="WdatePicker({dateFmt:'yyyy年MM月',readOnly:true})" /></td>
+				</tr>
+				<tr>
+					<td>选择文件：<input type="file" name="file" />
+					</td>
+				</tr>
+				<tr align="center">
+					<td><input type="submit"
+						style="width: 200px; height: 30px; background-color: #1296DB;border:none;"
+						value="上传"></td>
+				</tr>
+			</table>
 		</div>
 	</form>
 </body>

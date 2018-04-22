@@ -80,7 +80,7 @@ public class UserController {
 
 	@RequestMapping(value = "showdata")
 	public String showdata(String datetime, Model model, HttpSession session) {
-		if (session.getAttribute("adminLogin") == null) {
+		if (session.getAttribute("dataLogin") == null) {
 			return "login";
 		}
 		if (datetime == null) {
@@ -117,7 +117,7 @@ public class UserController {
 	@RequestMapping(value = "/download")
 	public void download(HttpServletRequest request, HttpServletResponse response, String datetime, Model model,
 			HttpSession session) throws Exception {
-		if (session.getAttribute("adminLogin") == null) {
+		if (session.getAttribute("dataLogin") == null) {
 			response.getOutputStream().write("请重新登录".getBytes());
 			return;
 		}
