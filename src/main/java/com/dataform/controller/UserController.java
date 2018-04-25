@@ -30,6 +30,7 @@ import jxl.Workbook;
 @RequestMapping
 public class UserController {
 	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月");
+	private SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM");
 
 	// private Logger log = LogManager.getLogger(getClass());
 
@@ -124,10 +125,11 @@ public class UserController {
 		try {
 			// 打开本地文件流
 			InputStream inputStream = new FileInputStream("upload/" + datetime + ".xls");
+			String fileName = sdf2.format(sdf.parse(datetime));
 			// 设置响应头和客户端保存文件名
 			response.setCharacterEncoding("UTF-8");
 			response.setContentType("multipart/form-data");
-			response.setHeader("Content-Disposition", "attachment;fileName=" + datetime + ".xls");
+			response.setHeader("Content-Disposition", "attachment;fileName=" + fileName + ".xls");
 			// 激活下载操作
 			OutputStream os = response.getOutputStream();
 

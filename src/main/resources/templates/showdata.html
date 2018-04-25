@@ -34,7 +34,8 @@ table.gridtable td {
 	src="My97DatePicker/WdatePicker.js"></script>
 <script>
 	function download() {
-		window.open('download?datetime=' + document.getElementById("dd").value);
+		document.getElementById("da").value = document.getElementById("dd").value
+		document.getElementById('downloadForm').submit();
 	}
 </script>
 </head>
@@ -57,9 +58,12 @@ table.gridtable td {
 				value="查询"> &nbsp;&nbsp;<a th:if="${datas.size()} > 0"
 				href="javascript:download()">下载Excel表格</a> <br> <br>
 		</form>
+		<form action="download" target="_blank" id="downloadForm" method="post">
+			<input name="datetime" id="da" type="text" hidden="true">
+		</form>
 		<table class="gridtable">
 			<tr>
-				<th>区域<br>店名
+				<th width="60">区域<br>店名
 				</th>
 				<th>上海站1<br>SHAR53
 				</th>
