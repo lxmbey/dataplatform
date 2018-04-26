@@ -44,7 +44,8 @@ table.gridtable td {
 		<div style="color: white;">
 			<b
 				style="position: absolute; color: white; font-size: 30px; left: 57px; top: 40px;">拉加代尔数据系统后台</b>
-			<b style="position: absolute; right: 40px; top: 40px;"> 你好，欢迎使用<br><a href="toLogin" style="color: red;margin-left: 85px;">退出<a></b>
+			<b style="position: absolute; right: 40px; top: 40px;"> 你好，欢迎使用<br>
+			<a href="toLogin" style="color: red; margin-left: 85px;">退出<a></b>
 		</div>
 	</div>
 	<br>
@@ -54,54 +55,23 @@ table.gridtable td {
 				style="width: 200px;"
 				onfocus="WdatePicker({dateFmt:'yyyy年MM月',readOnly:true})"
 				th:attr="value=${datetime}" />&nbsp; <input type="submit"
-				style="width: 200px; height: 30px; background-color: #1296DB;border:none;"
+				style="width: 200px; height: 30px; background-color: #1296DB; border: none;"
 				value="查询"> &nbsp;&nbsp;<a th:if="${datas.size()} > 0"
 				href="javascript:download()">下载Excel表格</a> <br> <br>
 		</form>
-		<form action="download" target="_blank" id="downloadForm" method="post">
+		<form action="download" target="_blank" id="downloadForm"
+			method="post">
 			<input name="datetime" id="da" type="hidden">
 		</form>
+		<h5 th:if="${datas.size()} <= 0">未上传数据</h5>
 		<table class="gridtable">
-			<tr>
-				<th><div style="width: 60px;">区域<br>店名</div>
-				</th>
-				<th>上海站1<br>SHAR53
-				</th>
-				<th>上海站2<br>SHAR54
-				</th>
-				<th>上海站3<br>SHAR55
-				</th>
-				<th>上海南<br>SHAR56
-				</th>
-				<th>杭州东_中<br>HZHR57
-				</th>
-				<th>杭州东<br>HZHR58
-				</th>
-				<th>绍兴站<br>SHXR43
-				</th>
-				<th>余姚站<br>YAOR44
-				</th>
-				<th>上虞站<br>SHYR42
-				</th>
-				<th>宜兴站<br>YIXR45
-				</th>
-				<th>溧阳站<br>LIYR46
-				</th>
-				<th>湖州站<br>HUZR47
-				</th>
-				<th>长兴站<br>CHXR48
-				</th>
-				<th>嘉兴站<br>JIXR49
-				</th>
-				<th>金华站<br>JIHR50
-				</th>
-				<th>宁波站_东南<br>NIBR51
-				</th>
-				<th>宁波站_西北<br>NIBR52
+			<tr th:each="th:${ths}">
+				<th th:each="tt:${th}">
+					<div style="width: 70px;" th:text="${tt}"></div>
 				</th>
 			</tr>
-			<tr th:each="tds :${datas}">
-				<td th:each="td : ${tds}" th:text="${td}"></td>
+			<tr th:each="tds :${datas}" align="center">
+				<td th:each="td : ${tds}" th:utext="${td}"></td>
 			</tr>
 		</table>
 	</div>

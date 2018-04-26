@@ -88,21 +88,35 @@ public class UserController {
 			datetime = sdf.format(new Date());
 		}
 		model.addAttribute("datetime", datetime);
+		List<String[]> ths = new ArrayList<>();
 		List<String[]> datas = new ArrayList<>();
 		try {
 			Workbook workbook = Workbook.getWorkbook(new File("upload/" + datetime + ".xls"));
 			Sheet sheet = workbook.getSheet("门店上传数据 (2)");
-			for (int i = 5; i < sheet.getRows(); i++) {
+			for (int i = 3; i < 5; i++) {
 				List<String> arr = new ArrayList<>();
 				Cell[] row = sheet.getRow(i);
 				for (Cell c : row) {
 					arr.add(getCellContentIgnoreException(c));
+				}
+				ths.add(arr.toArray(new String[0]));
+			}
+			for (int i = 5; i < sheet.getRows(); i++) {
+				List<String> arr = new ArrayList<>();
+				Cell[] row = sheet.getRow(i);
+				for (Cell c : row) {
+					if (i == 5) {
+						arr.add("<b>" + getCellContentIgnoreException(c) + "</b>");
+					} else {
+						arr.add(getCellContentIgnoreException(c));
+					}
 				}
 				datas.add(arr.toArray(new String[0]));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		model.addAttribute("ths", ths);
 		model.addAttribute("datas", datas);
 		return "showdata";
 	}
@@ -116,8 +130,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/download")
-	public void download(HttpServletRequest request, HttpServletResponse response, String datetime, Model model,
-			HttpSession session) throws Exception {
+	public void download(HttpServletRequest request, HttpServletResponse response, String datetime, Model model, HttpSession session) throws Exception {
 		if (session.getAttribute("dataLogin") == null) {
 			response.getOutputStream().write("请重新登录".getBytes());
 			return;
@@ -158,8 +171,7 @@ public class UserController {
 				// 这里只是简单例子，文件直接输出到项目路径下。
 				// 实际项目中，文件需要输出到指定位置，需要在增加代码处理。
 				// 还有关于文件格式限制、文件大小限制，详见：中配置。
-				BufferedOutputStream out = new BufferedOutputStream(
-						new FileOutputStream(new File("upload/" + datetime + ".xls")));
+				BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(new File("upload/" + datetime + ".xls")));
 				out.write(file.getBytes());
 				out.flush();
 				out.close();
